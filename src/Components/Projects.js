@@ -9,6 +9,35 @@ class Projects extends Component {
         }
     }
 
+    componentWillMount() {
+        console.log('componentWillMount() executed');
+    };
+
+    componentDidMount() {
+        console.log('componentDidMount() executed');
+    };
+
+    componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps() executed: ', nextProps);
+    };
+    
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('shouldComponentUpdate() executed: ', nextProps, nextState);
+        return true;
+    };
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('componentWillUpdate() executed');
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate() executed: ', prevProps, prevState);
+    };
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount() executed');
+    }
+    
     deleteProject(id) {
         this.props.onDelete(id);
     };
