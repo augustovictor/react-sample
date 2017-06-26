@@ -9,7 +9,7 @@ class App extends Component {
         this.state = {
             projects: []
         }
-    }
+    };
 
     componentWillMount() {
         this.setState({projects: [
@@ -19,16 +19,22 @@ class App extends Component {
             { title: 'Proj4', category: 'E-commerce' },
             { title: 'Proj5', category: 'Full stack' }
         ]});
-    }
+    };
+
+    handleAddProject(project) {
+        let projects = this.state.projects;
+        projects.push(project);
+        this.setState({projects: projects})
+    };
 
     render() {
         return (
             <div className="App">
-                <AddProject />
+                <AddProject addProject={this.handleAddProject.bind(this)}/>
                 <Projects projects={this.state.projects} />
             </div>
         );
-    }
+    };
 }
 
 export default App;

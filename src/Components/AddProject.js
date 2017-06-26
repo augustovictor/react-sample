@@ -21,7 +21,7 @@ class AddProject extends Component {
             title: this.refs.title.value,
             category: this.refs.category.value
         }}, () => {
-            console.log(this.state.newProject);
+            this.props.addProject(this.state.newProject);
         });
     };
 
@@ -54,7 +54,7 @@ class AddProject extends Component {
                 </form>
             </div>
         );
-    }
+    };
 }
 
 export default AddProject;
