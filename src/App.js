@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import uuid from 'uuid';
+import axios from 'axios';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
 import Todos from './Components/Todos';
-import uuid from 'uuid';
-import axios from 'axios';
+import { Header } from './Components/Header';
 
 class App extends Component {
     constructor() {
@@ -62,6 +63,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <Header homeLink="http://localhost:8080"/>
                 <AddProject addProject={this.handleAddProject.bind(this)}/>
                 <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
                 <Todos todos={this.state.todos} />
