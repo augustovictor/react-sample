@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 class AddProject extends Component {
     constructor() {
@@ -18,6 +19,7 @@ class AddProject extends Component {
             return alert('Empty title');
         }
         this.setState({newProject: {
+            id: uuid.v4(),
             title: this.refs.title.value,
             category: this.refs.category.value
         }}, () => {
@@ -41,12 +43,16 @@ class AddProject extends Component {
                         <input id="title" type="text" ref="title" />
                     </div>
 
+                    <br />
+
                     <div>
                         <label htmlFor="category">Category</label>
                         <select ref="category" id="category">
                             {categoryOptions}
                         </select>
                     </div>
+
+                    <br />
 
                     <div>
                         <button>Submit</button>
