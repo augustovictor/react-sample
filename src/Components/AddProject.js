@@ -63,4 +63,9 @@ class AddProject extends Component {
     };
 }
 
+AddProject.propTypes = {
+    categories: React.PropTypes.array,
+    handleSubmit: React.PropTypes.func
+}
+
 export default AddProject;
