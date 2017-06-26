@@ -12,7 +12,8 @@ class App extends Component {
         super();
         this.state = {
             projects: [],
-            todos: []
+            todos: [],
+            name: 'Default'
         }
     };
 
@@ -60,12 +61,19 @@ class App extends Component {
 
     };
 
+    onGreet(name) {
+        this.setState({ name: name });
+    }
+
     render() {
         return (
             <div className="App">
                 <Header homeLink="http://localhost:8080"/>
+                <p>
+                    Hello, { this.state.name }
+                </p>
                 <AddProject addProject={this.handleAddProject.bind(this)}/>
-                <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
+                <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} greet={this.onGreet.bind(this)} />
                 <Todos todos={this.state.todos} />
             </div>
         );

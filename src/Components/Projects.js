@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 import ProjectItem from './ProjectItem';
 
 class Projects extends Component {
+    constructor() {
+        super();
+        this.state = {
+            name: 'Victor'
+        }
+    }
 
     deleteProject(id) {
         this.props.onDelete(id);
+    };
+
+    onGreetName() {
+        this.props.greet(this.state.name);
     };
     
     render() {
@@ -19,6 +29,7 @@ class Projects extends Component {
 
         return (
             <div className="Projects">
+                <button onClick={this.onGreetName.bind(this)}>Say Hello</button>
                 <h3>Latest projects</h3>
                 { projectItems }
             </div>
@@ -29,7 +40,8 @@ class Projects extends Component {
 // Validates the types defined
 Projects.propTypes = {
     projects: React.PropTypes.array,
-    onDelete: React.PropTypes.func
+    onDelete: React.PropTypes.func,
+    greet: React.PropTypes.func
 }
 
 export default Projects;
