@@ -2,17 +2,31 @@ import React, { Component } from 'react';
 import './App.css';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
+import Todos from './Components/Todos';
 import uuid from 'uuid';
+import axios from 'axios';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            projects: []
+            projects: [],
+            todos: []
         }
     };
 
-    componentWillMount() {
+    getTodos() {
+        axios.get('https://jsonplaceholder.typicode.com/todos')
+        .then(res => {
+            this.setState({todos: res.data});
+            console.log(this.state);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
+
+    getProjects() {
         this.setState({projects: [
             { id: uuid.v4(), title: 'Proj1', category: 'Web dev' },
             { id: uuid.v4(), title: 'Proj2', category: 'Mobile dev' },
@@ -20,6 +34,15 @@ class App extends Component {
             { id: uuid.v4(), title: 'Proj4', category: 'E-commerce' },
             { id: uuid.v4(), title: 'Proj5', category: 'Full stack' }
         ]});
+    };
+
+    componentWillMount() {
+        this.getProjects();
+        this.getTodos();
+    };
+
+    componentDidMount() {
+        this.getTodos();
     };
 
     handleAddProject(project) {
@@ -41,6 +64,7 @@ class App extends Component {
             <div className="App">
                 <AddProject addProject={this.handleAddProject.bind(this)}/>
                 <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)} />
+                <Todos todos={this.state.todos} />
             </div>
         );
     };
